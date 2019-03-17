@@ -2,9 +2,11 @@
   "name": "home-server-pi",
   "version": "0.0.1",
   "description": "Home Server on Raspberry Pi",
-  "main": "index.js",
   "repository": "https://github.com/stesel/home-server-pi.git",
   "author": "Leonid Trofymchuk",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "dist": "bash dist.sh"
+  }
 }
