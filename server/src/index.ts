@@ -1,16 +1,20 @@
 import express from "express";
-import { env } from "./env"
+import * as http from "http";
+import { env } from "./env";
+import { registerWSServer } from "./wsServer";
 
 const app = express();
 
-app.use(express.static('../client/build'));
-app.set("port", process.env.PORT || 3000);
+const server = http.createServer(app);
 
+app.use(express.static("../client/build"));
+app.set("port", process.env.PORT || 3000);
 app.get("/env", env);
 
-app.listen(app.get("port"), () => {
+registerWSServer(server);
+
+server.listen(app.get("port"), () => {
     console.log(
-        "App is running at http://localhost in %s mode",
-        app.get("port"), app.get("env"),
+        `App is running at port: ${app.get("port")}, mode: ${app.get("env")}`,
     );
 });
