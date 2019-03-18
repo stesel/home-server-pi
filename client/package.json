@@ -1,6 +1,8 @@
 {
   "name": "client",
   "version": "0.0.1",
+  "author": "Leonid Trofymchuk",
+  "license": "MIT",
   "private": false,
   "dependencies": {
     "@types/jest": "24.0.11",
