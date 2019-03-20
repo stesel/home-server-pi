@@ -30,6 +30,7 @@ INSTALL_PACKAGE() {
 
 CHECK_VERSION node
 CHECK_VERSION yarn
+CHECK_VERSION pm2
 
 if [ -d $NAME ]
 then
@@ -54,10 +55,12 @@ then
     INSTALL_PACKAGE client
     INSTALL_PACKAGE server
 
-    cd $ROOTDIR
-    chmod +x $ROOTDIR/start.sh
-    update-rc.d $ROOTDIR/start.sh
-    echo -e "${GREEN}ADDED TO AUTOSTART${NOCOLOR}"
+    cd ${ROOTDIR}/${NAME}/server/build/
+    pm2 start ./index.js
+    echo -e "${GREEN}SERVER STARTED${NOCOLOR}"
+
+    pm2 save
+    echo -e "${GREEN}SERVER ADDED TO AUTOSTART${NOCOLOR}"
 else
     echo - e "${RED}FAIL TO INSTALL ${NAME^^}${NOCOLOR}"
     exit $?
