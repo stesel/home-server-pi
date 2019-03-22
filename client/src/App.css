@@ -36,6 +36,7 @@ a {
   align-items: center;
   justify-content: flex-start;
   color: white;
+  user-select: none;
 }
 
 .App-logo {

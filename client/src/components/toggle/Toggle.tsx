@@ -4,6 +4,7 @@ import "./Toggle.css"
 export interface ToggleProps {
     enabled: boolean;
     title: string;
+    setValue: (value: boolean) => void;
 }
 
 export const Toggle: React.SFC<ToggleProps> = props => {
@@ -12,7 +13,8 @@ export const Toggle: React.SFC<ToggleProps> = props => {
             <p className="toggle-title">{props.title}</p>
             <label className="toggle">
                 <input
-                    //checked={props.enabled}
+                    onChange={() => { props.setValue(!props.enabled) }}
+                    checked={props.enabled}
                     type="checkbox"
                     className="toggle-input"
                 />

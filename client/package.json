@@ -5,6 +5,8 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "mobx": "5.9.0",
+    "mobx-react": "5.4.3",
     "react": "16.8.4",
     "react-dom": "16.8.4"
   },
@@ -27,6 +29,7 @@
     "@types/node": "11.11.3",
     "@types/react": "16.8.8",
     "@types/react-dom": "16.8.2",
+    "mobx-react-devtools": "^6.1.1",
     "react-scripts": "2.1.8",
     "typescript": "3.3.3333"
   }
