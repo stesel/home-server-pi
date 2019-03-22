@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { ControlList } from "./components/controlList/ControlList";
 import DevTools from "mobx-react-devtools";
-import { ControlsState } from "./state/ControlsState";
+import { controlsState } from "./state/controlsState";
 
 class App extends Component {
     render() {
@@ -15,7 +15,7 @@ class App extends Component {
                     <p className="App-header-text">Home Server Pi</p>
                 </header>
                 <main className="App-main">
-                    <ControlList state={new ControlsState()} />
+                    <ControlList state={controlsState} />
                 </main>
             </div>
         );

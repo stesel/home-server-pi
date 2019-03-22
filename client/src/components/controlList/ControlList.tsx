@@ -1,29 +1,27 @@
 import * as React from "react";
+import { ObservableMap } from "mobx";
 import { observer } from "mobx-react";
 import { Toggle } from "../toggle/Toggle";
-import { IControlsState } from "../../interfaces/IControlsState";
+import { ControlsState, ToggleControl } from "client/state";
 
 export interface ControlListProps {
-    state: IControlsState;
+    state: ObservableMap<keyof ControlsState, ToggleControl >;
 }
 
 export const ControlList: React.SFC<ControlListProps> = observer((props: ControlListProps) => {
-    const { state } = props;
+    const mainLight = props.state.get("mainLight")!;
     return (
         <section className="control-list">
             <Toggle
-                enabled={state.getMainLight()}
-                setValue={state.setMainLight}
+                {...mainLight}
                 title="Main light"
             />
             <Toggle
-                enabled={state.getAdditionalLight()}
-                setValue={state.setAdditionalLight}
+                {...mainLight}
                 title="Additional light"
             />
             <Toggle
-                enabled={state.getMainCooler()}
-                setValue={state.setMainCooler}
+                {...mainLight}
                 title="Main cooler"
             />
         </section>

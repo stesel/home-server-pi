@@ -1,34 +1,14 @@
 import { observable } from "mobx";
-import { IControlsState } from "../interfaces/IControlsState";
+import { ControlsState, ToggleControl } from "client/state";
 
-export const ControlsState: IControlsState = observable({
-    mainLight: false,
-    additionalLight: false,
-    mainCooler: false,
-});  implements IControlsState {
+const toggleControl = observable<ToggleControl>({
+    value: false,
+    title: "Main Light",
+    setValue: function(value: boolean) {
+        this.value = value;
+    },
+});
 
-    public getMainLight() {
-        return this.mainLight;
-    }
-
-    public getAdditionalLight() {
-        return this.additionalLight;
-    }
-
-    public getMainCooler() {
-        return this.mainCooler;
-    }
-
-    public setMainLight(value: boolean) {
-        this.mainLight = value;
-    }
-
-    public setAdditionalLight(value: boolean) {
-        this.additionalLight = value;
-    }
-
-    public setMainCooler(value: boolean) {
-        this.mainCooler = value;
-    }
-
-}
+export const controlsState = observable.map<keyof ControlsState, ToggleControl>({
+    "mainLight": toggleControl,
+});
