@@ -8,22 +8,12 @@ export interface ControlListProps {
     state: ObservableMap<keyof ControlsState, ToggleControl >;
 }
 
-export const ControlList: React.SFC<ControlListProps> = observer((props: ControlListProps) => {
-    const mainLight = props.state.get("mainLight")!;
+export const ControlList = observer<React.SFC<ControlListProps>>(({ state }) => {
     return (
         <section className="control-list">
-            <Toggle
-                {...mainLight}
-                title="Main light"
-            />
-            <Toggle
-                {...mainLight}
-                title="Additional light"
-            />
-            <Toggle
-                {...mainLight}
-                title="Main cooler"
-            />
+            {Array.from(state.keys()).map(key => {
+                return (<Toggle {...state.get(key)!} key={key} />)
+            })}
         </section>
     );
 });

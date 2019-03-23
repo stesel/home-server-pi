@@ -6,7 +6,16 @@ import "./Toggle.css"
 export type ToggleProps = ToggleControl;
 
 @observer
-export class Toggle extends React.PureComponent<ToggleProps> {
+export class Toggle extends React.Component<ToggleProps> {
+
+    constructor(props: ToggleProps) {
+        super(props);
+        this.onChange = this.onChange.bind(this);
+    }
+
+    private onChange() {
+        this.props.setValue(!this.props.value);
+    };
 
     public render() {
         const { value, title } = this.props;
@@ -15,8 +24,8 @@ export class Toggle extends React.PureComponent<ToggleProps> {
                 <p className="toggle-title">{title}</p>
                 <label className="toggle">
                     <input
-                        onChange={this.setValue}
                         checked={value}
+                        onChange={this.onChange}
                         type="checkbox"
                         className="toggle-input"
                     />
@@ -25,10 +34,5 @@ export class Toggle extends React.PureComponent<ToggleProps> {
             </div>
         );
     }
-
-    private setValue = () => {
-        const { value, setValue } = this.props;
-        setValue(!value);
-    };
 
 };

@@ -1,14 +1,27 @@
-import { observable } from "mobx";
+import { action, observable } from "mobx";
 import { ControlsState, ToggleControl } from "client/state";
 
-const toggleControl = observable<ToggleControl>({
-    value: false,
-    title: "Main Light",
-    setValue: function(value: boolean) {
+class ToggleControlClass {
+
+    constructor(title: string, value: boolean = false) {
+        this.title = title;
         this.value = value;
-    },
-});
+        this.setValue = this.setValue.bind(this);
+    }
+
+    public title = "";
+
+    @observable
+    public value = false;
+
+    @action
+    public setValue(value: boolean) {
+        this.value = value;
+    }
+}
 
 export const controlsState = observable.map<keyof ControlsState, ToggleControl>({
-    "mainLight": toggleControl,
+    "mainLight": new ToggleControlClass("Main light"),
+    "additionalLight": new ToggleControlClass("Additional light"),
+    "mainCooler": new ToggleControlClass("Main cooler"),
 });
