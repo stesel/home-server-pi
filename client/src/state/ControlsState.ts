@@ -14,7 +14,7 @@ class ToggleControlClass {
     @observable
     public value = false;
 
-    @action
+    @action("update control value")
     public setValue(value: boolean) {
         this.value = value;
     }
