@@ -1,19 +1,25 @@
 import * as React from "react";
-import { ObservableMap } from "mobx";
-import { observer } from "mobx-react";
+import { inject, observer } from "mobx-react";
 import { Toggle } from "../toggle/Toggle";
-import { ControlsState, ToggleControl } from "client/state";
+import { Store } from "client/state";
 
-export interface ControlListProps {
-    state: ObservableMap<keyof ControlsState, ToggleControl >;
+export type ControlListProps = Store["controlsState"];
+
+const stateToProps = (state: Store) => {
+    return state.controlsState;
 }
 
-export const ControlList = observer<React.SFC<ControlListProps>>(({ state }) => {
+export const ControlList: React.SFC<{}> = inject<
+    Store,
+    ControlListProps,
+    ControlListProps,
+    {}
+>(stateToProps)(observer(controlsState => {
     return (
         <section className="control-list">
-            {Array.from(state.keys()).map(key => {
-                return (<Toggle {...state.get(key)!} key={key} />)
+            {Array.from(controlsState.keys()).map(key => {
+                return (<Toggle {...controlsState.get(key)!} key={key} />)
             })}
         </section>
-    );
-});
+    )
+}));

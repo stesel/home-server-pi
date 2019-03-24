@@ -13,11 +13,6 @@ export class Toggle extends React.Component<ToggleProps> {
         super(props);
     }
 
-    @action
-    private onChange = () => {
-        this.props.setValue(!this.props.value);
-    };
-
     public render() {
         const { value, title } = this.props;
         return (
@@ -35,5 +30,10 @@ export class Toggle extends React.Component<ToggleProps> {
             </div>
         );
     }
+
+    @action("Toggle Component Change")
+    private onChange = () => {
+        this.props.setValue(!this.props.value);
+    };
 
 };
