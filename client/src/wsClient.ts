@@ -30,7 +30,8 @@ const parseWSData = (data: string) => {
 };
 
 export const registerWS = () => {
-    const ws = new WebSocket(`ws://${window.location.host}`);
+    // const ws = new WebSocket(`ws://${window.location.host}`);
+    const ws = new WebSocket(`ws://localhost:3001`);
     ws.onopen = (event) => {
         console.log("WS OPENED: ", event);
     };
