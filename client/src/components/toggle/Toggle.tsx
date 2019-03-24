@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ToggleControl } from "client/state";
+import { action } from "mobx";
 import { observer } from "mobx-react";
 import "./Toggle.css"
 
@@ -10,10 +11,10 @@ export class Toggle extends React.Component<ToggleProps> {
 
     constructor(props: ToggleProps) {
         super(props);
-        this.onChange = this.onChange.bind(this);
     }
 
-    private onChange() {
+    @action
+    private onChange = () => {
         this.props.setValue(!this.props.value);
     };
 
