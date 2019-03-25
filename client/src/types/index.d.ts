@@ -4,8 +4,10 @@ declare module "client/state" {
 
     export interface ToggleControl {
         value: boolean;
+        broadcast: boolean;
         title: string;
         setValue: (value: boolean) => void;
+        setBroadcast: (broadcast: boolean) => void;
     }
 
     export interface ControlsState {

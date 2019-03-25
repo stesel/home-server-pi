@@ -33,6 +33,7 @@ export class Toggle extends React.Component<ToggleProps> {
 
     @action("Toggle Component Change")
     private onChange = () => {
+        this.props.setBroadcast(true);
         this.props.setValue(!this.props.value);
     };
 

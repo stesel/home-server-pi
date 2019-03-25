@@ -7,6 +7,7 @@ class ToggleControlClass {
         this.title = title;
         this.value = value;
         this.setValue = this.setValue.bind(this);
+        this.setBroadcast = this.setBroadcast.bind(this);
     }
 
     public title = "";
@@ -14,9 +15,17 @@ class ToggleControlClass {
     @observable
     public value = false;
 
+    @observable
+    public broadcast = false;
+
     @action("update control value")
     public setValue(value: boolean) {
         this.value = value;
+    }
+
+    @action("update broadcast value")
+    public setBroadcast(broadcast: boolean) {
+        this.broadcast = broadcast;
     }
 }
 

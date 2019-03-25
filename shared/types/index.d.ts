@@ -10,12 +10,13 @@ declare module "shared/ws" {
 
     import { ControlType } from "shared/state";
 
-    type ClientMessageType = "hsp.changeState";
+    type ClientMessageType = "hsp.changeControl";
 
     type ServerMessageType = "hsp.controlsState"
         | "hsp.controlChanged";
 
-    type ChangeControlMessage = {
+    export type ChangeControlMessage = {
+        type: "hsp.changeControl";
         args: Partial<{ [K in ControlType]: boolean }>;
     };
 

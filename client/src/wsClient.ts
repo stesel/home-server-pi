@@ -1,5 +1,6 @@
+import { autorun, transaction } from "mobx";
 import { ControlType } from "shared/state";
-import { ServerMessage } from "shared/ws";
+import { ServerMessage, ChangeControlMessage } from "shared/ws";
 import { controlsState } from "./state/controlsState";
 
 type MessageHandler = (message: ServerMessage) => void;
@@ -9,8 +10,10 @@ type MessageHandlerMap = Readonly<{
 }>;
 
 const controlsChangedHandler: MessageHandler = message => {
-    (Object.keys(message.args) as ControlType[]).forEach(key => {
-        controlsState.get(key)!.setValue(message.args[key]!);
+    transaction(() => {
+        (Object.keys(message.args) as ControlType[]).forEach(key => {
+            controlsState.get(key)!.setValue(message.args[key]!);
+        });
     });
 }
 
@@ -45,4 +48,34 @@ export const registerWS = () => {
         console.log("WS DATA: ", event.data);
         parseWSData(event.data);
     };
+
+    autorun(
+        () => {
+            const broadcastKeys = Array.from(
+                controlsState.keys(),
+            ).filter(key => {
+                return controlsState.get(key)!.broadcast;
+            });
+
+            if (broadcastKeys.length === 0) {
+                return;
+            }
+
+            transaction(() => {
+                broadcastKeys.forEach(key => {
+                    controlsState.get(key)!.setBroadcast(false);
+                });
+            });
+
+            const args = broadcastKeys.reduce((result, key) => {
+                result[key] = controlsState.get(key)!.value;
+                return result;
+            }, {} as ChangeControlMessage["args"]);
+
+            ws.send(JSON.stringify({
+                type: "hsp.changeControl",
+                args: args,
+            }));
+        },
+    );
 };
