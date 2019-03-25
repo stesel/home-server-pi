@@ -41,6 +41,8 @@ a {
 
 .App-logo {
   height: 5em;
+  margin-top: 0.7em;
+  margin-bottom: 0.3em;
   pointer-events: none;
   animation: App-logo-spin infinite 20s linear;
 }
