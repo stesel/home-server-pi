@@ -22,6 +22,7 @@
         "@types/react-dom": "16.8.2",
         "mobx-react-devtools": "^6.1.1",
         "react-scripts": "2.1.8",
+        "tslint": "5.14.0",
         "typescript": "3.3.3333"
     },
     "eslintConfig": {

@@ -2,23 +2,23 @@ declare module "client/state" {
 
     import { ObservableMap } from "mobx";
 
-    export type ToggleControl = {
+    export interface ToggleControl {
         value: boolean;
         title: string;
         setValue: (value: boolean) => void;
-    };
+    }
 
-    export type ControlsState = {
+    export interface ControlsState {
         mainLight: TogglleControl;
         additionalLight: ToggleControl;
         mainCooler: ToggleControl;
-    };
+    }
 
-    export type State = {
+    export interface State {
         controlsState: ControlsState;
-    };
+    }
 
-    export type Store = {
+    export interface Store {
         controlsState: ObservableMap<keyof ControlsState, ToggleControl>;
     }
 

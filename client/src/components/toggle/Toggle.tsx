@@ -1,8 +1,8 @@
-import * as React from "react";
 import { ToggleControl } from "client/state";
 import { action } from "mobx";
 import { observer } from "mobx-react";
-import "./Toggle.css"
+import * as React from "react";
+import "./Toggle.css";
 
 export type ToggleProps = ToggleControl;
 
