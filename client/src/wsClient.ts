@@ -33,8 +33,9 @@ const parseWSData = (data: string) => {
 };
 
 export const registerWS = () => {
-    // const ws = new WebSocket(`ws://${window.location.host}`);
-    const ws = new WebSocket(`ws://localhost:3001`);
+    // test const ws = new WebSocket(`ws://localhost:3001`);
+    const ws = new WebSocket(`ws://${window.location.host}`);
+
     ws.onopen = (event) => {
         console.log("WS OPENED: ", event);
     };
@@ -49,33 +50,31 @@ export const registerWS = () => {
         parseWSData(event.data);
     };
 
-    autorun(
-        () => {
-            const broadcastKeys = Array.from(
-                controlsState.keys(),
-            ).filter(key => {
-                return controlsState.get(key)!.broadcast;
+    autorun(() => {
+        const broadcastKeys = Array.from(
+            controlsState.keys(),
+        ).filter(key => {
+            return controlsState.get(key)!.broadcast;
+        });
+
+        if (broadcastKeys.length === 0) {
+            return;
+        }
+
+        transaction(() => {
+            broadcastKeys.forEach(key => {
+                controlsState.get(key)!.setBroadcast(false);
             });
+        });
 
-            if (broadcastKeys.length === 0) {
-                return;
-            }
+        const args = broadcastKeys.reduce((result, key) => {
+            result[key] = controlsState.get(key)!.value;
+            return result;
+        }, {} as ChangeControlMessage["args"]);
 
-            transaction(() => {
-                broadcastKeys.forEach(key => {
-                    controlsState.get(key)!.setBroadcast(false);
-                });
-            });
-
-            const args = broadcastKeys.reduce((result, key) => {
-                result[key] = controlsState.get(key)!.value;
-                return result;
-            }, {} as ChangeControlMessage["args"]);
-
-            ws.send(JSON.stringify({
-                type: "hsp.changeControl",
-                args: args,
-            }));
-        },
-    );
+        ws.send(JSON.stringify({
+            type: "hsp.changeControl",
+            args: args,
+        }));
+    });
 };

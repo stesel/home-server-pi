@@ -1,11 +1,10 @@
-declare module "client/state" {
+declare module "server/state" {
 
     import { ObservableMap } from "mobx";
 
     export interface ToggleControl {
         value: boolean;
         broadcast: boolean;
-        title: string;
         setValue: (value: boolean) => void;
         setBroadcast: (broadcast: boolean) => void;
     }

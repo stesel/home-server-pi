@@ -8,8 +8,8 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(express.static("../client/build"));
-// app.set("port", process.env.PORT || 3000);
-app.set("port", process.env.PORT || 3001);
+// test app.set("port", process.env.PORT || 3001);
+app.set("port", process.env.PORT || 3000);
 app.get("/env", env);
 
 registerWSServer(server);
