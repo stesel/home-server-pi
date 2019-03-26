@@ -3,13 +3,6 @@ import { ControlsState, ToggleControl } from "client/state";
 
 class ToggleControlClass {
 
-    constructor(title: string, value: boolean = false) {
-        this.title = title;
-        this.value = value;
-        this.setValue = this.setValue.bind(this);
-        this.setBroadcast = this.setBroadcast.bind(this);
-    }
-
     public title = "";
 
     @observable
@@ -17,6 +10,13 @@ class ToggleControlClass {
 
     @observable
     public broadcast = false;
+
+    constructor(title: string, value: boolean = false) {
+        this.title = title;
+        this.value = value;
+        this.setValue = this.setValue.bind(this);
+        this.setBroadcast = this.setBroadcast.bind(this);
+    }
 
     @action("update control value")
     public setValue(value: boolean) {

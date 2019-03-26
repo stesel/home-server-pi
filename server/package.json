@@ -1,54 +1,54 @@
 {
-    "name": "server",
-    "version": "0.0.1",
-    "author": "Leonid Trofymchuk",
-    "license": "MIT",
-    "private": false,
-    "main": "build/server.js",
-    "scripts": {
-        "start": "tsc -w & nodemon build/index.js",
-        "build": "tsc",
-        "test": "jest --forceExit --coverage --verbose"
+  "name": "server",
+  "version": "0.0.1",
+  "author": "Leonid Trofymchuk",
+  "license": "MIT",
+  "private": false,
+  "main": "build/server.js",
+  "scripts": {
+    "start": "tsc -w & nodemon build/index.js",
+    "build": "tsc",
+    "test": "jest --forceExit --coverage --verbose"
+  },
+  "dependencies": {
+    "express": "4.16.4",
+    "http": "0.0.0",
+    "ws": "6.2.0"
+  },
+  "devDependencies": {
+    "@types/express": "4.16.1",
+    "@types/jest": "24.0.11",
+    "@types/node": "11.11.3",
+    "@types/supertest": "2.0.7",
+    "@types/ws": "6.0.1",
+    "jest": "24.5.0",
+    "nodemon": "1.18.10",
+    "ts-jest": "24.0.0",
+    "ts-node": "8.0.3",
+    "tslint": "5.14.0",
+    "typescript": "3.3.3333"
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.json"
+      }
     },
-    "dependencies": {
-        "express": "4.16.4",
-        "http": "0.0.0",
-        "ws": "6.2.0"
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "server"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
     },
-    "devDependencies": {
-        "@types/express": "4.16.1",
-        "@types/jest": "24.0.11",
-        "@types/node": "11.11.3",
-        "@types/supertest": "2.0.7",
-        "@types/ws": "6.0.1",
-        "jest": "24.5.0",
-        "nodemon": "1.18.10",
-        "ts-jest": "24.0.0",
-        "ts-node": "8.0.3",
-        "tslint": "5.14.0",
-        "typescript": "3.3.3333"
-    },
-    "jest": {
-        "globals": {
-            "ts-jest": {
-                "tsConfig": "tsconfig.json"
-            }
-        },
-        "moduleFileExtensions": [
-            "ts",
-            "js",
-            "json"
-        ],
-        "moduleDirectories": [
-            "node_modules",
-            "server"
-        ],
-        "transform": {
-            "^.+\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
-        },
-        "testMatch": [
-            "**/__tests__/**/*.spec.ts"
-        ],
-        "testEnvironment": "node"
-    }
+    "testMatch": [
+      "**/__tests__/**/*.spec.ts"
+    ],
+    "testEnvironment": "node"
+  }
 }

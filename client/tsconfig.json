@@ -1,31 +1,31 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
-        "allowJs": true,
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "module": "esnext",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "noEmit": true,
-        "jsx": "preserve",
-        "isolatedModules": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
-    },
-    "paths": {
-        "client/*": ["../client/src"],
-    },
-    "include": [
-        "src/**/*",
-        "../shared/types/index.d.ts"
-    ]
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "paths": {
+    "client/*": ["../client/src"],
+  },
+  "include": [
+    "src/**/*",
+    "../shared/types/index.d.ts"
+  ]
 }

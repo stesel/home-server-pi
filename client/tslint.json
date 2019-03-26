@@ -1,14 +1,6 @@
 {
-    "defaultSeverity": "error",
-    "extends": [
-        "tslint:recommended"
-    ],
-    "jsRules": {},
-    "rules": {
-        "interface-name": [false],
-        "no-console": [false],
-        "quotemark": [true, "double"],
-        "arrow-parens": false
-    },
-    "rulesDirectory": []
+  "extends": [
+    "tslint:recommended",
+    "../tslint.json"
+  ]
 }

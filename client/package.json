@@ -1,37 +1,37 @@
 {
-    "name": "client",
-    "version": "0.0.1",
-    "author": "Leonid Trofymchuk",
-    "license": "MIT",
-    "private": false,
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test"
-    },
-    "dependencies": {
-        "mobx": "5.9.0",
-        "mobx-react": "5.4.3",
-        "react": "16.8.4",
-        "react-dom": "16.8.4"
-    },
-    "devDependencies": {
-        "@types/jest": "24.0.11",
-        "@types/node": "11.11.3",
-        "@types/react": "16.8.8",
-        "@types/react-dom": "16.8.2",
-        "mobx-react-devtools": "^6.1.1",
-        "react-scripts": "2.1.8",
-        "tslint": "5.14.0",
-        "typescript": "3.3.3333"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
-    "browserslist": [
-        ">0.2%",
-        "not dead",
-        "not ie <= 11",
-        "not op_mini all"
-    ]
+  "name": "client",
+  "version": "0.0.1",
+  "author": "Leonid Trofymchuk",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test"
+  },
+  "dependencies": {
+    "mobx": "5.9.0",
+    "mobx-react": "5.4.3",
+    "react": "16.8.4",
+    "react-dom": "16.8.4"
+  },
+  "devDependencies": {
+    "@types/jest": "24.0.11",
+    "@types/node": "11.11.3",
+    "@types/react": "16.8.8",
+    "@types/react-dom": "16.8.2",
+    "mobx-react-devtools": "^6.1.1",
+    "react-scripts": "2.1.8",
+    "tslint": "5.14.0",
+    "typescript": "3.3.3333"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
