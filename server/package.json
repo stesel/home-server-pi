@@ -8,7 +8,8 @@
   "scripts": {
     "start": "tsc -w & nodemon build/index.js",
     "build": "tsc",
-    "test": "jest --forceExit --coverage --verbose"
+    "test": "jest --forceExit --detectOpenHandles --coverage --verbose",
+    "lint": "tslint -c tslint.json src/**/*.ts"
   },
   "dependencies": {
     "express": "4.16.4",
@@ -45,7 +46,7 @@
       "server"
     ],
     "transform": {
-      "^.+\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
+      "^.+\\.(ts|tsx)$": "ts-jest"
     },
     "testMatch": [
       "**/__tests__/**/*.spec.ts"
