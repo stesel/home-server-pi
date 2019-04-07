@@ -15,7 +15,7 @@ const controlsChangedHandler: MessageHandler = message => {
             controlsState.get(key)!.setValue(message.args[key]!);
         });
     });
-}
+};
 
 const messageHandlerMap: MessageHandlerMap = {
     "hsp.controlsState": controlsChangedHandler,
@@ -26,8 +26,7 @@ const parseWSData = (data: string) => {
     try {
         const message: ServerMessage = JSON.parse(data);
         messageHandlerMap[message.type](message);
-    }
-    catch (e) {
+    } catch (e) {
         console.warn("WS DATA ERROR: ", e);
     }
 };
