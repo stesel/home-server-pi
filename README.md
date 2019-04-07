@@ -1,25 +1,14 @@
 # home-server-pi
 
-## TODO update
-```typescript
-require('child_process');
-const pkg = require('./package');
-const checkForUpdate = require('update-check');
+## Install
+```
+Download install.sh on your Pi device and execute it with shell.
+In case in error try set execution rights: sudo chmod +x install.sh.
+```
 
-let update = null;
-
-try {
-	update = await checkForUpdate(pkg, {
-		interval: 3600000,  // For how long to cache latest version (default: 1 day)
-		distTag: 'canary'   // A npm distribution tag for comparision (default: 'latest')
-	});
-} catch (err) {
-	console.error(`Failed to check for updates: ${err}`);
-}
-
-if (update) {
-	console.log(`The latest version is ${update.latest}. Please update!`);
-}
+## Find Pi
+```
+Use find_pi.sh script to find Pi device by mac address 
 ```
 
 ## ping WS
@@ -34,6 +23,3 @@ last reboot | less
 last -x | grep shutdown | less
 /var/log/syslog
 ```
-
-## autostart
-https://www.instructables.com/id/Nodejs-App-As-a-RPI-Service-boot-at-Startup/
