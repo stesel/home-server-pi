@@ -1,0 +1,25 @@
+language: node_js
+node_js: 11
+scripts:
+- npm run install
+
+jobs:
+  include:
+  - stage: build
+    name: Build Client
+    before_script:
+    - cd $PWD/client
+    - npm install
+    script:
+    - npm run lint
+    - npm run test
+    - npm run build
+  - stage: build
+    name: Build Server
+    before_script:
+    - cd $PWD/server
+    - npm install
+    script:
+    - npm run lint
+    - npm run test
+    - npm run build

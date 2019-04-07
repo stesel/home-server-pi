@@ -1,4 +1,4 @@
-# home-server-pi
+# home-server-pi [![Build Status](https://travis-ci.com/stesel/home-server-pi.svg?branch=master)](https://travis-ci.com/stesel/home-server-pi)
 
 ## Install
 ```
