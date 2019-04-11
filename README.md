@@ -5,6 +5,11 @@
 Download install.sh on your Pi device and execute it with shell.
 In case in error try set execution rights: sudo chmod +x install.sh.
 ```
+## Set secret phrase
+```
+Download secure_phrase.sh on your Pi device and execute it with shell 'sudo bash secure_phrase.sh your_secret'.
+In case in error try set execution rights: sudo chmod +x install.sh.
+```
 
 ## Find Pi
 ```
