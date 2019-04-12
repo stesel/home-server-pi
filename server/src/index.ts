@@ -1,13 +1,25 @@
 import express from "express";
 import * as http from "http";
+import cors from "cors";
+import bodyParser from "body-parser";
 import { env } from "./env";
 import { registerWSServer } from "./wsServer";
+import { userAuthentication } from "./loginService";
 
 const app = express();
 
-const server = http.createServer(app);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
 
 app.use(express.static("../client/build"));
+
+const router = express.Router();
+router.post("/users/authenticate", userAuthentication);
+app.use(router);
+
+const server = http.createServer(app);
+
 // test app.set("port", process.env.PORT || 3001);
 app.set("port", process.env.PORT || 3000);
 app.get("/env", env);

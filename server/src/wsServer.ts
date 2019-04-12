@@ -35,8 +35,7 @@ const parseWSData = (data: string) => {
     try {
         const message: ClientMessage = JSON.parse(data);
         messageHandlerMap[message.type](message);
-    }
-    catch (e) {
+    } catch (e) {
         console.warn("WS DATA ERROR: ", e);
     }
 };
