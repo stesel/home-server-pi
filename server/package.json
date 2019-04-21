@@ -16,7 +16,8 @@
     "cors": "2.8.5",
     "express": "4.16.4",
     "http": "0.0.0",
-    "mobx": "^5.9.0",
+    "mobx": "5.9.0",
+    "onoff": "4.1.1",
     "ws": "6.2.0"
   },
   "devDependencies": {
