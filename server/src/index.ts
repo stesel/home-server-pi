@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import { env } from "./env";
 import { registerWSServer } from "./wsServer";
 import { userAuthentication } from "./loginService";
+import { registerDevice } from "./device";
 
 const app = express();
 
@@ -25,6 +26,8 @@ app.set("port", process.env.PORT || 3000);
 app.get("/env", env);
 
 registerWSServer(server);
+
+registerDevice();
 
 server.listen(app.get("port"), () => {
     console.log(
