@@ -1,13 +1,13 @@
 import * as WebSocket from "ws";
 import { Server } from "http";
-import { autorun, transaction } from "mobx";
+import { transaction } from "mobx";
 import {
     ServerMessage,
     ControlsStateMessage,
     ClientMessage,
     ControlChangedMessage,
  } from "shared/ws";
-import { ControlType } from "shared/state";
+import { ControlType, ControlObserver } from "shared/state";
 import { controlsState } from "./state/controlsState";
 
 type MessageHandler = (message: ClientMessage) => void;
@@ -68,24 +68,8 @@ export const registerWSServer = (server: Server) => {
         });
     });
 
-    autorun(() => {
-        const broadcastKeys = Array.from(
-            controlsState.keys(),
-        ).filter(key => {
-            return controlsState.get(key)!.broadcast;
-        });
-
-        if (broadcastKeys.length === 0) {
-            return;
-        }
-
-        transaction(() => {
-            broadcastKeys.forEach(key => {
-                controlsState.get(key)!.setBroadcast(false);
-            });
-        });
-
-        const args = broadcastKeys.reduce((result, key: ControlType) => {
+    const observer: ControlObserver = keys => {
+        const args = keys.reduce((result, key: ControlType) => {
             result[key] = controlsState.get(key)!.value;
             return result;
         }, {} as ControlChangedMessage["args"]);
@@ -98,6 +82,6 @@ export const registerWSServer = (server: Server) => {
         wss.clients.forEach((ws: WebSocket) => {
             sendToWS(ws, message);
         });
-    });
-
+    };
+    return observer;
 };

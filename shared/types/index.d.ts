@@ -4,6 +4,7 @@ declare module "shared/state" {
         | "additionalLight"
         | "mainCooler";
 
+    export type ControlObserver = (type: ControlType[]) => void;
 }
 
 declare module "shared/ws" {
@@ -15,10 +16,10 @@ declare module "shared/ws" {
     type ServerMessageType = "hsp.controlsState"
         | "hsp.controlChanged";
 
-    export type ChangeControlMessage = {
+    export type ChangeControlMessage = Readonly<{
         type: "hsp.changeControl";
         args: Partial<{ [K in ControlType]: boolean }>;
-    };
+    }>;
 
     export type ClientMessage = ChangeControlMessage;
 

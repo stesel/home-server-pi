@@ -1,8 +1,7 @@
 import { Gpio, BinaryValue } from "onoff";
 import { platform } from "os";
-import { autorun } from "mobx";
 import { controlsState } from "./state/controlsState";
-import { ControlType } from "shared/state";
+import { ControlType, ControlObserver } from "shared/state";
 
 const booleanToBinary = (value: boolean): BinaryValue => {
    return value ? 1 : 0;
@@ -11,7 +10,9 @@ const booleanToBinary = (value: boolean): BinaryValue => {
 export const registerDevice = () => {
     if (platform() !== "linux") {
         console.warn("This is not PI device");
-        return;
+        return () => {
+            console.warn("Changes are ignored for devices");
+        };
     }
     const cooler = new Gpio(4, "out");
 
@@ -23,19 +24,17 @@ export const registerDevice = () => {
         cooler.unexport();
     });
 
-    autorun(() => {
-        const broadcastKeys = Array.from(
-            controlsState.keys(),
-        ).filter(key => {
-            return controlsState.get(key)!.broadcast;
-        });
-
-        broadcastKeys.forEach((key: ControlType) => {
+    const observer: ControlObserver = keys => {
+        keys.forEach((key: ControlType) => {
+            const value = booleanToBinary(controlsState.get(key)!.value);
             switch (key) {
                 case "mainCooler":
-                    cooler.writeSync(booleanToBinary(controlsState.get(key)!.value));
+                    cooler.writeSync(value);
+                    break;
+                default:
+                    break;
             }
         });
-
-    });
+    };
+    return observer;
 };
