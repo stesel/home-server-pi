@@ -18,7 +18,7 @@
     "http": "0.0.0",
     "mobx": "5.9.0",
     "onoff": "4.1.1",
-    "ws": "6.2.0"
+    "ws": "7.4.6"
   },
   "devDependencies": {
     "@types/body-parser": "1.17.0",
